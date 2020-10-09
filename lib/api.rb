@@ -1,28 +1,25 @@
 
 class API
 
-    attr_accessor 
+    def self.get_jobs   
+        url = "https://jobs.github.com/positions.json?markdown=true"
 
-    def get_jobs   
-        uri = URI.parse("https://jobs.github.com/positions.json?markdown=true")
+        uri = URI(url)
         response = Net::HTTP.get(uri)
         array = JSON.parse(response)
         
-
         array.each do |job_hash|
-            job = Job.new
-            job.id = job_hash["id"]
+             job = Job.new
+             job.id = job_hash["id"]
+             job.type = job_hash["type"]
+             job.created_at = job_hash["created_at"]
+             job.company = job_hash["company"]
+             job.location = job_hash["location"]
+             job.job_title = job_hash["title"]
+             job.job_description = job_hash["description"]
+             job.how_to_apply = job_hash["how_to_apply"]
         end
+        binding.pry
     end
- #binding.pry
- #:id, :type, :created_at, :company, :location, :job_title, :job_description, :how_to_apply
-
-
-
-
-
-
-
-
-
+ 
 end
