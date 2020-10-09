@@ -4,4 +4,5 @@ require_relative './lib/job.rb'
 
 require 'pry'
 require 'net/http'
+require 'open-uri'
 require 'json'
