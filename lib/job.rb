@@ -13,19 +13,29 @@ class Job
     end
 
     def self.search_by_location(location)
-        @@all.select do |job|
+        results = []
+        @@all.each do |job|
             if job.location.include?(location)
-                return "#{job.id}, #{job.type}, #{job.job_title}, #{job.location}, #{job.job_description}"
+                #return "#{job.id}, #{job.type}, #{job.job_title}, #{job.location}, #{job.job_description}"
+                results << "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
             end
         end
+        results                                                                                                                      
     end 
+
+    def continue                                                                                                               
+        print "press any key"                                                                                                    
+        STDIN.getch                                                                                                              
+        print "            \r" # extra space to overwrite in case next sentence is short                                                                                                              
+    end
+
 
     def Job.locations_list
         locations = []
         @@all.each do |job|
         locations << job.location
         end
-      return locations.map(&:capitalize).uniq.sort
+      return locations.uniq.sort
     end  
 
 

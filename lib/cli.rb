@@ -16,7 +16,7 @@ class CLI
         #locations_list
 
     end
-    #binding.pry
+    binding.pry
 
     def how_to_search
 
@@ -35,12 +35,12 @@ class CLI
 
     def search_by_location
         puts "Would you like see a list of available locations? Yes or No"
-        answer = gets.chomp
-        if answer == "Yes" or answer == "y"
+        answer = gets.chomp.downcase
+        if answer == "yes" or answer == "y" 
             puts locations_list
             location_search
         elsif
-            answer == "No" or answer == "n"
+            answer == "no" or answer == "n" 
             location_search
         else
             puts "Please puts Yes or No"
@@ -53,6 +53,7 @@ class CLI
         answer = gets.chomp
         puts Job.search_by_location(answer)
         location_search
+        
     end 
 
     
