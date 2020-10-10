@@ -20,6 +20,14 @@ class Job
         end
     end 
 
+    def Job.locations_list
+        locations = []
+        @@all.each do |job|
+        locations << job.location
+        end
+      return locations.map(&:capitalize).uniq.sort
+    end  
+
 
 
 end
