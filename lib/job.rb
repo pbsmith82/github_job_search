@@ -12,6 +12,14 @@ class Job
         @@all
     end
 
+    def self.search_by_location(location)
+        @@all.select do |job|
+            if job.location.include?(location)
+                return "#{job.id}, #{job.type}, #{job.job_title}, #{job.location}, #{job.job_description}"
+            end
+        end
+    end 
+
 
 
 end

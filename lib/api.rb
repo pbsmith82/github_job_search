@@ -19,7 +19,7 @@ class API
              job.job_description = job_hash["description"]
              job.how_to_apply = job_hash["how_to_apply"]
         end
-        binding.pry
+        #binding.pry
     end
  
 end
