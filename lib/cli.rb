@@ -30,7 +30,7 @@ class CLI
             search_by_type
         
         else
-            puts "Sorry you must search by location."
+            puts "Sorry please choose location or type."
             how_to_search
         end
 
@@ -86,27 +86,22 @@ class CLI
         puts "What type would you like to search for?"
         answer = gets.chomp
         if answer.to_s == answer.to_i.to_s 
-                type_list.to_a.each do |type|
-                    #binding.pry
-                    if type.include?(answer)
-                        type_value = type.strip.delete("#{answer}:")
-                        Job.search_by_type(type_value.strip).each do |job|
-                              puts job
-                              puts "Press Any Key to See Next Result..."
-                                STDIN.getch 
-                            end 
-                    end
+            type_list.to_a.each do |type|
+                #binding.pry
+                if type.include?(answer)
+                    type_value = type.strip.delete("#{answer}:")
+                    Job.search_by_type(type_value.strip).each do |job|
+                        puts job
+                        puts "Press Any Key to See Next Result..."
+                        STDIN.getch 
+                    end 
                 end
-             #end
+            end
         else
             answer = answer.upcase
             puts Job.search_by_type(answer)
         end
         how_to_search    
-    end
-
-    def is_number?(obj)
-        obj.to_s == obj.to_i.to_s
     end
 
     def type_list
