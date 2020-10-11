@@ -14,7 +14,7 @@ class CLI
         how_to_search
     end
 
-    binding.pry
+    
 
     def how_to_search
 
@@ -85,13 +85,28 @@ class CLI
     def type_search
         puts "What type would you like to search for?"
         answer = gets.chomp
-        answer = answer.upcase
-        puts Job.search_by_type(answer)
+        if answer.to_s == answer.to_i.to_s 
+                type_list.to_a.each do |type|
+                    #binding.pry
+                    if type.include?(answer)
+                        type_value = type.strip.delete("#{answer}:")
+                        puts Job.search_by_type(type_value.strip)
+                    end
+                end
+             #end
+        else
+            answer = answer.upcase
+            puts Job.search_by_type(answer)
+        end
         how_to_search    
     end
 
+    def is_number?(obj)
+        obj.to_s == obj.to_i.to_s
+    end
+
     def type_list
-        puts Job.type_list
+        Job.type_list
     end
 # How would they like to search
 # List Search Options

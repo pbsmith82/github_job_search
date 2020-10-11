@@ -48,16 +48,16 @@ class Job
     end 
 
     def self.type_list
-        types = []
-        uniq_types = []
-        @@all.each_with_index do |job|
-        types << job.type
+            types = []
+            uniq_types = []
+            @@all.each_with_index do |job|
+            types << job.type
         end
-      types = types.uniq.sort
-      types.each_with_index do |type, index|
-        number = index + 1
-        uniq_types << "\r\n#{number}: #{type}"
-      end
+            types = types.uniq.sort
+            types.each_with_index do |type, index|
+            number = index + 1
+            uniq_types << "\r\n#{number}: #{type}"
+        end
       return uniq_types
     end 
 
