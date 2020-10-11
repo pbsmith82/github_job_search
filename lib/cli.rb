@@ -12,10 +12,8 @@ class CLI
         puts "Welcome!"
         API.get_jobs
         how_to_search
-        #search_by_location
-        #locations_list
-
     end
+
     binding.pry
 
     def how_to_search
@@ -23,10 +21,11 @@ class CLI
         puts "How would you like to search Github job listing?"
         puts "You can search by locations."
         search = gets.chomp
-        if search == "location" or search == "locations"
+        search = search.upcase
+        if search == "LOCATION" or search == "LOCATIONS"
             search_by_location
         else
-            puts "Sorry you must search by location"
+            puts "Sorry you must search by location."
             how_to_search
         end
 
@@ -48,16 +47,14 @@ class CLI
         end
     end
 
+
     def location_search
         puts "What location would you like to search for?"
         answer = gets.chomp
+        answer = answer.upcase
         puts Job.search_by_location(answer)
-        location_search
-        
+        location_search    
     end 
-
-    
-    
     
     
     def locations_list
