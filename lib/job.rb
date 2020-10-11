@@ -44,7 +44,7 @@ class Job
                 results << "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
             end
         end
-        results                                                                                             
+        results                                                                                          
     end 
 
     def self.type_list

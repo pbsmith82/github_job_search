@@ -90,7 +90,11 @@ class CLI
                     #binding.pry
                     if type.include?(answer)
                         type_value = type.strip.delete("#{answer}:")
-                        puts Job.search_by_type(type_value.strip)
+                        Job.search_by_type(type_value.strip).each do |job|
+                              puts job
+                              puts "Press Any Key to See Next Result..."
+                                STDIN.getch 
+                            end 
                     end
                 end
              #end
