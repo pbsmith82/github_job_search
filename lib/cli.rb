@@ -57,7 +57,12 @@ class CLI
         puts "What location would you like to search for?"
         answer = gets.chomp
         answer = answer.upcase
-        puts Job.search_by_location(answer)
+        Job.search_by_location(answer).each do |job|
+            puts job
+            puts "Press Any Key to See Next Result..."
+            STDIN.getch
+        end
+        puts "There are no more results." 
         how_to_search   
     end 
     
@@ -82,6 +87,7 @@ class CLI
         end
     end
 
+
     def type_search
         puts "What type would you like to search for?"
         answer = gets.chomp
@@ -99,10 +105,16 @@ class CLI
             end
         else
             answer = answer.upcase
-            puts Job.search_by_type(answer)
+            Job.search_by_type(answer).each do |job|
+                puts job
+                puts "Press Any Key to See Next Result..."
+                STDIN.getch 
+            end 
+            puts "There are no more results."
         end
         how_to_search    
     end
+
 
     def type_list
         Job.type_list
@@ -117,14 +129,5 @@ class CLI
 
 # Apply Open Browser Webpage.
 # Track all that they have applied for.
-
-
-
-
-
-
-
-
-
 
 end
