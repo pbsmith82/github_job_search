@@ -18,12 +18,17 @@ class CLI
 
     def how_to_search
 
-        puts "How would you like to search Github job listing?"
-        puts "You can search by locations."
+        puts "Would you like to search by location or type?"
+        #puts "You can search by locations."
         search = gets.chomp
-        search = search.upcase
-        if search == "LOCATION" or search == "LOCATIONS"
+        search = search.downcase
+        if search == "location" or search == "locations"
             search_by_location
+        
+        elsif 
+            search == "type" 
+            search_by_type
+        
         else
             puts "Sorry you must search by location."
             how_to_search
@@ -53,7 +58,7 @@ class CLI
         answer = gets.chomp
         answer = answer.upcase
         puts Job.search_by_location(answer)
-        location_search    
+        how_to_search   
     end 
     
     
@@ -61,6 +66,33 @@ class CLI
         puts Job.locations_list
     end
     
+
+    def search_by_type
+        puts "Would you like see a list of available types? Yes or No"
+        answer = gets.chomp.downcase
+        if answer == "yes" or answer == "y" 
+            puts type_list
+            type_search
+        elsif
+            answer == "no" or answer == "n" 
+            type_search
+        else
+            puts "Please puts Yes or No"
+            search_by_type
+        end
+    end
+
+    def type_search
+        puts "What type would you like to search for?"
+        answer = gets.chomp
+        answer = answer.upcase
+        puts Job.search_by_type(answer)
+        how_to_search    
+    end
+
+    def type_list
+        puts Job.type_list
+    end
 # How would they like to search
 # List Search Options
     # Location

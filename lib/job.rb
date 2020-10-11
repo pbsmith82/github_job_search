@@ -29,7 +29,7 @@ class Job
     # end
 
 
-    def Job.locations_list
+    def self.locations_list
         locations = []
         @@all.each do |job|
         locations << job.location
@@ -37,6 +37,28 @@ class Job
       return locations.uniq.sort
     end  
 
+    def self.search_by_type(type)
+        results = []
+        @@all.each do |job|
+            if job.type.include?(type)
+                results << "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+            end
+        end
+        results                                                                                             
+    end 
 
+    def self.type_list
+        types = []
+        uniq_types = []
+        @@all.each_with_index do |job|
+        types << job.type
+        end
+      types = types.uniq.sort
+      types.each_with_index do |type, index|
+        number = index + 1
+        uniq_types << "\r\n#{number}: #{type}"
+      end
+      return uniq_types
+    end 
 
 end
