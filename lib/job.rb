@@ -61,4 +61,14 @@ class Job
       return uniq_types
     end 
 
+    # def self.search_by_id(id)
+    #     results = []
+    #     @@all.each do |job|
+    #         if job.id == id
+    #             results << "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+    #         end
+    #     end
+    #     results                                                                                             
+    # end
+
 end

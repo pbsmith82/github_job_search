@@ -14,7 +14,14 @@ class CLI
         how_to_search
     end
 
-    
+    #system("open", "http://stackoverflow.com/")
+
+    # def apply
+    #     job = gets.chomp
+
+
+
+
 
     def how_to_search
 
