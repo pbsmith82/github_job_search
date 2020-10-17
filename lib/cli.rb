@@ -9,24 +9,14 @@ require 'json'
 class CLI
     
     def start
-        puts "Welcome!"
+        puts "Welcome to Github Jobs!"
         API.get_jobs
         how_to_search
     end
 
-    #system("open", "http://stackoverflow.com/")
-
-    # def apply
-    #     job = gets.chomp
-
-
-
-
-
     def how_to_search
 
         puts "Would you like to search by location or type?"
-        #puts "You can search by locations."
         search = gets.chomp
         search = search.downcase
         if search == "location" or search == "locations"
@@ -100,7 +90,6 @@ class CLI
         answer = gets.chomp
         if answer.to_s == answer.to_i.to_s 
             type_list.to_a.each do |type|
-                #binding.pry
                 if type.include?(answer)
                     type_value = type.strip.delete("#{answer}:")
                     Job.search_by_type(type_value.strip).each do |job|
@@ -126,15 +115,5 @@ class CLI
     def type_list
         Job.type_list
     end
-# How would they like to search
-# List Search Options
-    # Location
-    # Title
-    # Description
-    # Company
-    # Type
-
-# Apply Open Browser Webpage.
-# Track all that they have applied for.
 
 end
