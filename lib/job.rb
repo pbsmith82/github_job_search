@@ -22,13 +22,6 @@ class Job
         results                                                                                             
     end 
 
-    # def continue                                                                                                               
-    #     print "press any key"                                                                                                    
-    #     STDIN.getch                                                                                                              
-    #     print "            \r" # extra space to overwrite in case next sentence is short                                                                                                              
-    # end
-
-
     def self.locations_list
         locations = []
         @@all.each do |job|
@@ -54,21 +47,10 @@ class Job
             types << job.type
         end
             types = types.uniq.sort
-            types.each_with_index do |type, index|
-            number = index + 1
-            uniq_types << "\r\n#{number}: #{type}"
+            types.each.with_index(1) do |type, index|
+            uniq_types << "\r\n#{index}: #{type}"
         end
       return uniq_types
     end 
-
-    # def self.search_by_id(id)
-    #     results = []
-    #     @@all.each do |job|
-    #         if job.id == id
-    #             results << "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
-    #         end
-    #     end
-    #     results                                                                                             
-    # end
 
 end
