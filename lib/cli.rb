@@ -17,22 +17,31 @@ class CLI
     def how_to_search
 
         puts "Would you like to search by location or type?"
-        search = gets.chomp
-        search = search.downcase
-        if search == "location" or search == "locations"
+        search = gets.chomp.downcase
+        if search == "location" || search == "locations"
             search_by_location
         
         elsif 
-            search == "type" 
+            search == "type" || search == "types"
             search_by_type
         
         else
             puts "Sorry please choose location or type."
-            how_to_search
+            continue
         end
-
+        
     end
 
+    def continue
+        puts "Would you like to continue to searching?"
+        response = gets.chomp.downcase
+        if response == "yes" || search == "y"
+            how_to_search
+        
+        else
+            puts "Thanks for using Githob Jobs!"
+        end
+    end
 
     def search_by_location
         puts "Would you like see a list of available locations? Yes or No"
