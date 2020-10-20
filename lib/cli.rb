@@ -36,7 +36,7 @@ class CLI
     def continue
         puts "Would you like to continue to searching?"
         response = gets.chomp.downcase
-        if response == "yes" || search == "y"
+        if response == "yes" || response == "y"
             @@error_counter = 0
             how_to_search
         else
