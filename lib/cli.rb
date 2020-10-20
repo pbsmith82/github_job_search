@@ -7,7 +7,8 @@ require 'open-uri'
 require 'json'
 
 class CLI
-    
+    @@error_counter = 0
+
     def start
         puts "Welcome to Github Jobs!"
         API.get_jobs
@@ -36,14 +37,18 @@ class CLI
         puts "Would you like to continue to searching?"
         response = gets.chomp.downcase
         if response == "yes" || search == "y"
+            @@error_counter = 0
             how_to_search
-        
         else
             puts "Thanks for using Githob Jobs!"
         end
     end
 
     def search_by_location
+        if @@error_counter > 2
+            continue
+        end
+        #binding.pry
         puts "Would you like see a list of available locations? Yes or No"
         answer = gets.chomp.downcase
         if answer == "yes" or answer == "y" 
@@ -54,6 +59,7 @@ class CLI
             location_search
         else
             puts "Please puts Yes or No"
+            @@error_counter += 1
             search_by_location
         end
     end
