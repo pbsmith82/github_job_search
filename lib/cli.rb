@@ -34,13 +34,14 @@ class CLI
     end
 
     def continue
-        puts "Would you like to continue to searching?"
-        response = gets.chomp.downcase
-        if response == "yes" || response == "y"
+        puts "If you'd like to continue to searching, press Y ."
+        response = STDIN.getch.downcase
+        if response == "y"
             @@error_counter = 0
             how_to_search
         else
             puts "Thanks for using Githob Jobs!"
+            exit
         end
     end
 
@@ -85,6 +86,9 @@ class CLI
     
 
     def search_by_type
+        if @@error_counter > 2
+            continue
+        end
         puts "Would you like see a list of available types? Yes or No"
         answer = gets.chomp.downcase
         if answer == "yes" or answer == "y" 
@@ -95,6 +99,7 @@ class CLI
             type_search
         else
             puts "Please puts Yes or No"
+            @@error_counter += 1
             search_by_type
         end
     end
@@ -109,8 +114,11 @@ class CLI
                     type_value = type.strip.delete("#{answer}:")
                     Job.search_by_type(type_value.strip).each do |job|
                         puts job
-                        puts "Press Any Key to See Next Result..."
-                        STDIN.getch 
+                        puts "Press Any Key to See Next Result... Or press Q to quit."
+                        input = STDIN.getch.downcase 
+                        if input == "q"
+                            continue
+                        end
                     end 
                 end
             end
