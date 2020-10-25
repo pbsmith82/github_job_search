@@ -11,7 +11,7 @@ class CLI
         if @@error_counter > 2
             continue
         end
-        puts "Would you like to search by location or type?"
+        puts "Would you like to search by location or type? You can also enter quit to end program."
         search = gets.chomp.downcase
         if search == "location" || search == "locations"
             search_by_location
@@ -20,13 +20,18 @@ class CLI
             search == "type" || search == "types"
             search_by_type
         
+        elsif
+            search == "quit" || search == "exit"
+            continue
+        
         else
-            puts "You must choose location or type."
+            puts "You must choose location, type, or quit."
             @@error_counter += 1
             how_to_search
         end
         
     end
+
 
     def continue
         puts "If you'd like to continue to searching, press Y, or press any other key to exit."
@@ -68,18 +73,18 @@ class CLI
         Job.search_by_location(answer).each do |job|
             puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
             puts "Press Q to quit, H to see how to apply, or any other key to continue."
-                        input = STDIN.getch.downcase 
+            input = STDIN.getch.downcase 
+                if input == "q"
+                    continue
+                elsif
+                    input == "h"
+                    puts "\r\n HOW TO APPLY: #{job.how_to_apply}"
+                    puts "\r\n Press Q to quit, or any other key to continue."
+                    input = STDIN.getch.downcase 
                         if input == "q"
                             continue
-                        elsif
-                            input == "h"
-                            puts "\r\n HOW TO APPLY: #{job.how_to_apply}"
-                            puts "\r\n Press Q to quit, or any other key to continue."
-                            input = STDIN.getch.downcase 
-                            if input == "q"
-                                continue
-                            end
                         end
+                end
         end
         puts "There are no more results." 
         continue  
@@ -123,17 +128,17 @@ class CLI
                         puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
                         puts "Press Q to quit, H to see how to apply, or any other key to continue."
                         input = STDIN.getch.downcase 
-                        if input == "q"
-                            continue
-                        elsif
-                            input == "h"
-                            puts "\r\n HOW TO APPLY: #{job.how_to_apply}"
-                            puts "\r\n Press Q to quit, or any other key to continue."
-                            input = STDIN.getch.downcase 
                             if input == "q"
                                 continue
+                            elsif
+                                input == "h"
+                                puts "\r\n HOW TO APPLY: #{job.how_to_apply}"
+                                puts "\r\n Press Q to quit, or any other key to continue."
+                                input = STDIN.getch.downcase 
+                                    if input == "q"
+                                        continue
+                                    end
                             end
-                        end
                     end 
                 end
             end
@@ -144,8 +149,8 @@ class CLI
                 puts "Press Any Key to See Next Result..."
                 STDIN.getch 
             end 
-            puts "There are no more results."
         end
+        puts "\r\nThere are no more results."
         how_to_search    
     end
 
