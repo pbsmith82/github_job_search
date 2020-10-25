@@ -16,7 +16,9 @@ class CLI
     end
 
     def how_to_search
-
+        if @@error_counter > 2
+            continue
+        end
         puts "Would you like to search by location or type?"
         search = gets.chomp.downcase
         if search == "location" || search == "locations"
@@ -27,8 +29,9 @@ class CLI
             search_by_type
         
         else
-            puts "Sorry please choose location or type."
-            continue
+            puts "You must choose location or type."
+            @@error_counter += 1
+            how_to_search
         end
         
     end
@@ -72,16 +75,19 @@ class CLI
         answer = answer.upcase
         Job.search_by_location(answer).each do |job|
             puts job
-            puts "Press Any Key to See Next Result..."
-            STDIN.getch
+            puts "Press Any Key to See Next Result... Or press Q to quit."
+            input = STDIN.getch.downcase 
+                        if input == "q"
+                            continue
+                        end
         end
         puts "There are no more results." 
-        how_to_search   
+        continue  
     end 
     
     
     def locations_list
-        puts Job.locations_list
+        Job.locations_list
     end
     
 
@@ -108,8 +114,9 @@ class CLI
     def type_search
         puts "What type would you like to search for?"
         answer = gets.chomp
+        #binding.pry
         if answer.to_s == answer.to_i.to_s 
-            type_list.to_a.each do |type|
+            type_list.each do |type|
                 if type.include?(answer)
                     type_value = type.strip.delete("#{answer}:")
                     Job.search_by_type(type_value.strip).each do |job|
