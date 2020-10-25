@@ -16,7 +16,7 @@ class Job
         results = []
         @@all.each do |job|
             if job.location.include?(location)
-                results << "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+                results << job
             end
         end
         results                                                                                             
@@ -34,7 +34,7 @@ class Job
         results = []
         @@all.each do |job|
             if job.type.include?(type)
-                results << "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+                results << job
             end
         end
         results                                                                                          
