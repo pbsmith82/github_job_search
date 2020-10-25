@@ -27,7 +27,7 @@ class Job
         @@all.each do |job|
         locations << job.location
         end
-      return locations.uniq.sort
+      locations.uniq.sort
     end  
 
     def self.search_by_type(type)
@@ -50,7 +50,7 @@ class Job
             types.each.with_index(1) do |type, index|
             uniq_types << "\r\n#{index}: #{type}"
         end
-      return uniq_types
+      uniq_types
     end 
 
 end

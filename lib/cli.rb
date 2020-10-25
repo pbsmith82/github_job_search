@@ -1,11 +1,3 @@
-require_relative "./api.rb"
-require_relative "./job.rb"
-
-require 'pry'
-require 'net/http'
-require 'open-uri'
-require 'json'
-
 class CLI
     @@error_counter = 0
 
