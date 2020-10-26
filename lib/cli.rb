@@ -70,7 +70,8 @@ class CLI
         answer = gets.chomp
         answer = answer.upcase
         Job.search_by_location(answer).each do |job|
-            puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+            puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}"
+            puts "\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
             puts "Press Q to quit, H to see how to apply, or any other key to continue."
             input = STDIN.getch.downcase 
                 if input == "q"
@@ -108,7 +109,7 @@ class CLI
             answer == "no" or answer == "n" 
             type_search
         else
-            puts "Please puts Yes or No"
+            puts "Please enter Yes or No"
             @@error_counter += 1
             search_by_type
         end
@@ -118,13 +119,13 @@ class CLI
     def type_search
         puts "What type would you like to search for?"
         answer = gets.chomp
-        #binding.pry
         if answer.to_s == answer.to_i.to_s 
             type_list.each do |type|
                 if type.include?(answer)
                     type_value = type.strip.delete("#{answer}:")
                     Job.search_by_type(type_value.strip).each do |job|
-                        puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+                        puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}"
+                        puts "\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
                         puts "Press Q to quit, H to see how to apply, or any other key to continue."
                         input = STDIN.getch.downcase 
                             if input == "q"
