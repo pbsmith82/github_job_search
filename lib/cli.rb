@@ -34,7 +34,7 @@ class CLI
 
 
     def continue
-        puts "If you'd like to continue to searching, press Y, or press any other key to exit."
+        puts "If you'd like to continue searching, press Y, or press any other key to exit."
         response = STDIN.getch.downcase
         if response == "y"
             @@error_counter = 0
@@ -49,17 +49,16 @@ class CLI
         if @@error_counter > 2
             continue
         end
-        #binding.pry
         puts "Would you like see a list of available locations? Yes or No"
         answer = gets.chomp.downcase
-        if answer == "yes" or answer == "y" 
+        if answer == "yes" || answer == "y" 
             puts locations_list
             location_search
         elsif
-            answer == "no" or answer == "n" 
+            answer == "no" || answer == "n" 
             location_search
         else
-            puts "Please puts Yes or No"
+            puts "Please enter Yes or No"
             @@error_counter += 1
             search_by_location
         end

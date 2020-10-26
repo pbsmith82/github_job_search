@@ -25,9 +25,9 @@ class Job
     def self.locations_list
         locations = []
         @@all.each do |job|
-        locations << job.location
+            locations << job.location
         end
-      locations.uniq.sort
+        locations.uniq.sort
     end  
 
     def self.search_by_type(type)
@@ -41,16 +41,16 @@ class Job
     end 
 
     def self.type_list
-            types = []
-            uniq_types = []
-            @@all.each_with_index do |job|
+        types = []
+        uniq_types = []
+        @@all.each_with_index do |job|
             types << job.type
-        end
-            types = types.uniq.sort
-            types.each.with_index(1) do |type, index|
+            end
+        types = types.uniq.sort
+        types.each.with_index(1) do |type, index|
             uniq_types << "\r\n#{index}: #{type}"
-        end
-      uniq_types
+            end
+        uniq_types
     end 
 
 end
