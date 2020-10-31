@@ -70,16 +70,16 @@ class CLI
         answer = gets.chomp
         answer = answer.upcase
         Job.search_by_location(answer).each do |job|
-            puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}"
-            puts "\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+            puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \n\n #{job.job_description}"
+            puts "\n\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n\n "
             puts "Press Q to quit, H to see how to apply, or any other key to continue."
             input = STDIN.getch.downcase 
                 if input == "q"
                     continue
                 elsif
                     input == "h"
-                    puts "\r\n HOW TO APPLY: #{job.how_to_apply}"
-                    puts "\r\n Press Q to quit, or any other key to continue."
+                    puts "\n HOW TO APPLY: #{job.how_to_apply}"
+                    puts "\n Press Q to quit, or any other key to continue."
                     input = STDIN.getch.downcase 
                         if input == "q"
                             continue
@@ -124,16 +124,16 @@ class CLI
                 if type.include?(answer)
                     type_value = type.strip.delete("#{answer}:")
                     Job.search_by_type(type_value.strip).each do |job|
-                        puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \r\n\r\n #{job.job_description}"
-                        puts "\r\n\r\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \r\n\r\n "
+                        puts "Job ID: #{job.id},\nJob Type: #{job.type},\nJob Title: #{job.job_title},\nJob Location: #{job.location},\nJob Description: \n\n #{job.job_description}"
+                        puts "\n\n ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \n\n "
                         puts "Press Q to quit, H to see how to apply, or any other key to continue."
                         input = STDIN.getch.downcase 
                             if input == "q"
                                 continue
                             elsif
                                 input == "h"
-                                puts "\r\n HOW TO APPLY: #{job.how_to_apply}"
-                                puts "\r\n Press Q to quit, or any other key to continue."
+                                puts "\n HOW TO APPLY: #{job.how_to_apply}"
+                                puts "\n Press Q to quit, or any other key to continue."
                                 input = STDIN.getch.downcase 
                                     if input == "q"
                                         continue
@@ -150,7 +150,7 @@ class CLI
                 STDIN.getch 
             end 
         end
-        puts "\r\nThere are no more results."
+        puts "\nThere are no more results."
         how_to_search    
     end
 
